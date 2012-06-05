@@ -1,15 +1,16 @@
-var FormView = Backbone.View.extend({
+var FormView = Backbone.View.extend( {
     el: document.getElementById( 'add' ),
     events: {
-        'submit form#taskform': 'addTask'
+        'submit form': 'manageTask'
     },
-    initialize: function()
+    initialize: function ()
     {
-        _.bindAll( this, 'addTask' );
+        _.bindAll( this, 'manageTask' );
 
-        this.collection.on( 'add', this.addTaskConfirmed, this );
+        this.collection.on( 'add', this.resetForm, this );
+        this.collection.on( 'change', this.resetForm, this );
     },
-    addTask: function( e )
+    manageTask: function ( e )
     {
         var task = {
             title: document.getElementById( 'title' ).value,
@@ -17,12 +18,28 @@ var FormView = Backbone.View.extend({
             assigned: document.getElementById( 'assigned' ).value
         };
 
-        this.collection.add( task );
+        if ( !_.isEmpty( this.model ) )
+        {
+            this.model.set( task );
+        }
+        else
+        {
+            this.collection.add( task );
+        }
 
         e.preventDefault();
     },
-    addTaskConfirmed: function()
+    resetForm: function ()
     {
+        this.model = undefined;
         this.$el.find( 'input[type="text"]' ).val( '' );
+    },
+    editTask: function ( taskid )
+    {
+        this.model = this.collection.getByCid( taskid );
+
+        document.getElementById( 'title' ).value = this.model.get( 'title' );
+        document.getElementById( 'description' ).value = this.model.get( 'description' );
+        document.getElementById( 'assigned' ).value = this.model.get( 'assigned' );
     }
-});
+} );

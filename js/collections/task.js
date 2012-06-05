@@ -1,3 +1,3 @@
-var TaskCollection = Backbone.Collection.extend({
+var TaskCollection = Backbone.Collection.extend( {
     model: TaskModel
-});
+} );

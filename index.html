@@ -40,7 +40,7 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="#home">Home</a></li>
-              <li><a href="#add">Add Task</a></li>
+              <li><a href="#add">Manage Task</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -77,9 +77,10 @@
             </form>
 		</div>
 		<div id="view" class="hero-unit" style="display: none">
-            <h1 class="title"></h1>
-            <h2 class="assigned"></h2>
+            <h1>Task: <span class="title"></span></h1>
+            <h2>Assigned: <span class="assigned"></span></h2>
             <p class="description"></p>
+            <a href="#" class="remove">Remove Task</a>
 		</div>
 		
 		<hr>
@@ -90,15 +91,14 @@
 
     </div> <!-- /container -->
 <script type="text/template" id="tasktemplate">
-    <li><a href="#view-<%= id %>"><%= title %></a></li>
+    <li><a href="#view-<%= id %>"><%= title %></a> <a href="#edit-<%= id %>">Edit</a></li>
 </script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
 
 <script type="text/javascript" src="js/libs/bootstrap/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
-<script type="text/javascript" src="http://documentcloud.github.com/backbone/backbone-min.js"></script>
-<script type="text/javascript" src="https://raw.github.com/jeromegn/Backbone.localStorage/master/backbone.localStorage-min.js"></script>
+<script type="text/javascript" src="js/libs/underscore-min.js"></script>
+<script type="text/javascript" src="js/libs/backbone-min.js"></script>
 <script type="text/javascript" src="js/views/form.js"></script>
 <script type="text/javascript" src="js/views/list.js"></script>
 <script type="text/javascript" src="js/views/task.js"></script>

@@ -1,11 +1,19 @@
-var TaskView = Backbone.View.extend({
+var TaskView = Backbone.View.extend( {
     el: document.getElementById( 'view' ),
-    showTask: function( taskid )
+    events: {
+        'click a.remove': 'remove'
+    },
+    remove: function ( e )
     {
-        var model = this.collection.getByCid( taskid );
+        this.collection.remove( this.model );
+        e.preventDefault();
+    },
+    showTask: function ( taskid )
+    {
+        this.model = this.collection.getByCid( taskid );
 
-        this.$el.find( '.title' ).html( model.get( 'title' ) );
-        this.$el.find( '.description' ).html( model.get( 'description' ) );
-        this.$el.find( '.assigned' ).html( model.get( 'assigned' ) );
+        this.$el.find( '.title' ).html( this.model.get( 'title' ) );
+        this.$el.find( '.description' ).html( this.model.get( 'description' ) );
+        this.$el.find( '.assigned' ).html( this.model.get( 'assigned' ) );
     }
-});
+} );

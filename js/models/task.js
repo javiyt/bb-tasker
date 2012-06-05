@@ -1,7 +1,7 @@
-var TaskModel = Backbone.Model.extend({
+var TaskModel = Backbone.Model.extend( {
     defaults: {
         title: '',
         assigned: '',
         description: ''
     }
-});
+} );
