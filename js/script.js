@@ -2,7 +2,7 @@ var AppRouter = Backbone.Router.extend( {
     routes: {
         'add': 'add',
         'view-:id': 'view',
-        'edit-:id': 'edit',
+        'edit-:id': 'add',
         '*home': 'home'
     },
     views: {},
@@ -17,6 +17,8 @@ var AppRouter = Backbone.Router.extend( {
         this.collections.tasks.on( 'add', this.goToHome, this );
         this.collections.tasks.on( 'remove', this.goToHome, this );
         this.collections.tasks.on( 'change', this.goToHome, this );
+
+        this.collections.tasks.fetch();
     },
     showOnly: function ( section )
     {
@@ -34,15 +36,18 @@ var AppRouter = Backbone.Router.extend( {
     {
         this.showOnly( 'home' );
     },
-    add: function ()
+    add: function ( taskid )
     {
         this.showOnly( 'add' );
-        this.views.form.resetForm();
-    },
-    edit: function ( taskid )
-    {
-        this.showOnly( 'add' );
-        this.views.form.editTask( taskid );
+
+        if ( taskid )
+        {
+            this.views.form.editTask( taskid );
+        }
+        else
+        {
+            this.views.form.resetForm();
+        }
     },
     view: function ( taskid )
     {

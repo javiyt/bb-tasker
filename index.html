@@ -15,10 +15,10 @@
 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<style>
-	body {
-	  padding-top: 60px;
-	  padding-bottom: 40px;
-	}
+    	body {
+    	  padding-top: 60px;
+    	  padding-bottom: 40px;
+    	}
 	</style>
 	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
 	<link rel="stylesheet" href="css/style.css">
@@ -79,30 +79,32 @@
 		</div>
 
 		<div id="view" class="hero-unit" style="display: none">
-              <h1>Task: <span class="title"></span></h1>
-              <h2>Assigned: <span class="assigned"></span></h2>
-              <p class="description"></p>
-              <a href="#" class="remove">Remove Task</a>
+                <h1>Task: <span class="title"></span></h1>
+                <h2>Assigned: <span class="assigned"></span></h2>
+                <p class="description"></p>
+                <a href="#" class="remove">Remove Task</a>
 		</div>
 
 		<hr>
 
       <footer>
-        <p>Javi Martín</p>
+        <p>Backbone</p>
       </footer>
 
     </div> <!-- /container -->
 <script type="text/template" id="tasktemplate">
-    <li><a href="#view-<%= id %>"><%= title %></a> <a href="#edit-<%= id %>">Edit</a></li>
+    <a href="#view-<%= id %>"><%= title %></a> <a href="#edit-<%= id %>">Edit</a> <a href="#remove-<%= id %>">Remove</a>
 </script>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.8.2.min.js"><\/script>')</script>
 
 <script type="text/javascript" src="js/libs/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/libs/underscore-min.js"></script>
 <script type="text/javascript" src="js/libs/backbone-min.js"></script>
+<script type="text/javascript" src="js/libs/backbone.debug.js"></script>
 <script type="text/javascript" src="js/libs/backbone.localStorage-min.js"></script>
 <script type="text/javascript" src="js/views/form.js"></script>
+<script type="text/javascript" src="js/views/task_list.js"></script>
 <script type="text/javascript" src="js/views/list.js"></script>
 <script type="text/javascript" src="js/views/task.js"></script>
 <script type="text/javascript" src="js/models/task.js"></script>

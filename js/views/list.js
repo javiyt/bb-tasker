@@ -4,22 +4,20 @@ var ListView = Backbone.View.extend( {
     initialize: function ()
     {
         this.collection.on( 'add', this.addOne, this );
-        this.collection.on( 'remove', this.remove, this );
-        this.collection.on( 'change', this.render, this );
-    },
-    remove: function ( model )
-    {
-        this.$el.find( 'a[href="#view-' + model.cid + '"]' ).parent().remove();
+        this.collection.on( 'reset', this.render, this );
     },
     addOne: function ( model )
     {
-        var options = model.toJSON();
-        options.id = model.cid;
+        var view = new SingleTaskListView( {model: model} );
 
-        this.$el.append( this.template( options ) );
+        view.render();
+        this.$el.append( view.el );
     },
-    render: function ( model )
+    render: function ( collection )
     {
-        this.$el.find( 'a[href="#view-' + model.cid + '"]' ).html( model.get( 'title' ) );
+        collection.each( function( model )
+        {
+            this.addOne( model );
+        }, this );
     }
 } );

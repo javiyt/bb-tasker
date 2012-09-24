@@ -22,7 +22,7 @@ var FormView = Backbone.View.extend( {
         }
         else
         {
-            this.collection.add( task );
+            this.collection.create( task );
         }
 
         e.preventDefault();

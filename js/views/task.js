@@ -5,7 +5,7 @@ var TaskView = Backbone.View.extend( {
     },
     remove: function ( e )
     {
-        this.collection.remove( this.model );
+        this.model.destroy();
         e.preventDefault();
     },
     showTask: function ( taskid )
