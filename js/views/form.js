@@ -5,8 +5,6 @@ var FormView = Backbone.View.extend( {
     },
     initialize: function ()
     {
-        _.bindAll( this, 'manageTask' );
-
         this.collection.on( 'add', this.resetForm, this );
         this.collection.on( 'change', this.resetForm, this );
     },
