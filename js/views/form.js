@@ -19,6 +19,7 @@ var FormView = Backbone.View.extend( {
         if ( !_.isEmpty( this.model ) )
         {
             this.model.set( task );
+            this.model.on( 'error', this.showError, this );
         }
         else
         {
@@ -39,5 +40,9 @@ var FormView = Backbone.View.extend( {
         document.getElementById( 'title' ).value = this.model.get( 'title' );
         document.getElementById( 'description' ).value = this.model.get( 'description' );
         document.getElementById( 'assigned' ).value = this.model.get( 'assigned' );
+    },
+    showError: function( message )
+    {
+        debugger;
     }
 } );

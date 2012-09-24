@@ -15,5 +15,6 @@ var TaskView = Backbone.View.extend( {
         this.$el.find( '.title' ).html( this.model.get( 'title' ) );
         this.$el.find( '.description' ).html( this.model.get( 'description' ) );
         this.$el.find( '.assigned' ).html( this.model.get( 'assigned' ) );
+        this.$el.find( '.edit' ).attr( 'href', '#edit-' + this.model.cid );
     }
 } );

@@ -3,5 +3,12 @@ var TaskModel = Backbone.Model.extend( {
         title: '',
         assigned: '',
         description: ''
+    },
+    validate: function( attrs )
+    {
+        if ( _.isEmpty( attrs.title ) || _.isEmpty( attrs.assigned ) || _.isEmpty( attrs.description ) )
+        {
+            return 'Not all needed attributes are present';
+        }
     }
 } );
