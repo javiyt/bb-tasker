@@ -6,8 +6,7 @@ var SingleTaskListView = Backbone.View.extend({
     },
     initialize: function()
     {
-        this.model.on( 'destroy', this.remove, this );
-        this.model.on( 'remove', this.remove, this );
+        this.model.on( 'destroy remove', this.remove, this );
         this.model.on( 'change', this.render, this );
     },
     removeModel: function( e )

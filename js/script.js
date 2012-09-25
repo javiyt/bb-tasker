@@ -14,9 +14,7 @@ var AppRouter = Backbone.Router.extend( {
         this.views.task = new TaskView( {collection: this.collections.tasks} );
         this.views.form = new FormView( {collection: this.collections.tasks} );
 
-        this.collections.tasks.on( 'add', this.goToHome, this );
-        this.collections.tasks.on( 'remove', this.goToHome, this );
-        this.collections.tasks.on( 'change', this.goToHome, this );
+        this.collections.tasks.on( 'add remove change', this.goToHome, this );
 
         this.collections.tasks.fetch();
     },
