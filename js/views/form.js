@@ -42,6 +42,6 @@ var FormView = Backbone.View.extend( {
     },
     showError: function( message )
     {
-        debugger;
+
     }
 } );

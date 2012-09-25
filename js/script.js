@@ -6,17 +6,18 @@ var AppRouter = Backbone.Router.extend( {
         '*home': 'home'
     },
     views: {},
-    collections: {},
+    tasks: {},
     initialize: function ()
     {
-        this.collections.tasks = new TaskCollection();
-        this.views.list = new ListView( {collection: this.collections.tasks} );
-        this.views.task = new TaskView( {collection: this.collections.tasks} );
-        this.views.form = new FormView( {collection: this.collections.tasks} );
+        this.tasks = new Tasker();
+        this.views.listtodo = new ListView( {collection: this.tasks.get( 'tasks' )} );
+        this.views.listdone = new ListView( {collection: this.tasks.get( 'done' ), el: document.getElementById( 'tasklist-done' )} );
+        this.views.task = new TaskView();
+        this.views.form = new FormView( {collection: this.tasks.get( 'tasks' )} );
 
-        this.collections.tasks.on( 'add remove change', this.goToHome, this );
+        this.tasks.get( 'tasks' ).on( 'add remove change', this.goToHome, this );
 
-        this.collections.tasks.fetch();
+        this.tasks.get( 'tasks' ).fetch();
     },
     showOnly: function ( section )
     {
@@ -29,9 +30,10 @@ var AppRouter = Backbone.Router.extend( {
     {
         this.navigate( 'home', {trigger: true} );
     },
-    home: function ()
+    home: function ( tab )
     {
         this.showOnly( 'home' );
+        this.views.listtodo.showTab( tab );
     },
     add: function ( taskid )
     {
@@ -49,7 +51,7 @@ var AppRouter = Backbone.Router.extend( {
     view: function ( taskid )
     {
         this.showOnly( 'view' );
-        this.views.task.showTask( taskid );
+        this.views.task.showTask( this.tasks.get( 'tasks' ).getByCid( taskid ) );
     }
 } );
 

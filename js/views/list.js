@@ -1,6 +1,7 @@
 var ListView = Backbone.View.extend( {
     el: document.getElementById( 'tasklist' ),
     template: _.template( document.getElementById( 'tasktemplate' ).innerHTML ),
+    tabs: new TabsView(),
     initialize: function ()
     {
         this.collection.on( 'add', this.addOne, this );
@@ -19,5 +20,9 @@ var ListView = Backbone.View.extend( {
         {
             this.addOne( model );
         }, this );
+    },
+    showTab: function( tab )
+    {
+        this.tabs.showTab( tab );
     }
 } );

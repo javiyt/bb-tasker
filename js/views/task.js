@@ -8,9 +8,9 @@ var TaskView = Backbone.View.extend( {
         this.model.destroy();
         e.preventDefault();
     },
-    showTask: function ( taskid )
+    showTask: function ( model )
     {
-        this.model = this.collection.getByCid( taskid );
+        this.model = model;
 
         this.$el.find( '.title' ).html( this.model.get( 'title' ) );
         this.$el.find( '.description' ).html( this.model.get( 'description' ) );
