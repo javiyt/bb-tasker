@@ -27,8 +27,7 @@ var AppRouter = Backbone.Router.extend( {
     },
     goToHome: function ()
     {
-        this.navigate( 'home' );
-        this.home();
+        this.navigate( 'home', {trigger: true} );
     },
     home: function ()
     {
