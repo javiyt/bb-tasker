@@ -17,8 +17,8 @@ var FormView = Backbone.View.extend( {
 
         if ( !_.isEmpty( this.model ) )
         {
-            this.model.set( task );
             this.model.on( 'error', this.showError, this );
+            this.model.set( task );
         }
         else
         {
