@@ -40,7 +40,7 @@ var FormView = Backbone.View.extend( {
         document.getElementById( 'description' ).value = this.model.get( 'description' );
         document.getElementById( 'assigned' ).value = this.model.get( 'assigned' );
     },
-    showError: function( message )
+    showError: function( model, message )
     {
 
     }
