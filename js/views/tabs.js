@@ -1,14 +1,19 @@
-var TabsView = Backbone.View.extend({
-    el: document.getElementById( 'myTabs' ),
-    showTab: function( tab )
-    {
-        var toggle = this.$el.find( 'a[href="#' + tab + '"]' );
-
-        if ( toggle.length == 0 )
+define(['jquery', 'underscore', 'backbone'], function( $, _, Backbone )
+{
+    var TabsView = Backbone.View.extend({
+        el: document.getElementById( 'myTabs' ),
+        showTab: function( tab )
         {
-            toggle = this.$el.find( 'a[href="#todotasks"]' );
-        }
+            var toggle = this.$el.find( 'a[href="#' + tab + '"]' );
 
-        toggle.tab( 'show' );
-    }
+            if ( toggle.length == 0 )
+            {
+                toggle = this.$el.find( 'a[href="#todotasks"]' );
+            }
+
+            toggle.tab( 'show' );
+        }
+    });
+
+    return TabsView;
 });
