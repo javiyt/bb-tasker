@@ -116,7 +116,10 @@
 
     </div> <!-- /container -->
 <script type="text/template" id="tasktemplate">
-    <a href="#view-<%= id %>"><%= title %></a> <a href="#edit-<%= id %>">Edit</a> <a href="#remove-<%= id %>">Remove</a>
+    <a href="#view/<%= id %>"><%= title %></a> [<a href="#edit-<%= id %>">Edit</a>] [<a href="#remove-<%= id %>">Remove</a>] [<a href="#done">Mark as resolved</a>]
+</script>
+<script type="text/template" id="tasktemplate-done">
+    <%= title %> [<a href="#reopen">Reopen</a>]
 </script>
 <script data-main="js/main" src="js/libs/require.js"></script>
 

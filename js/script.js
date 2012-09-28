@@ -3,7 +3,7 @@ define(['jquery', 'backbone', 'models/tasker', 'views/list', 'views/form', 'view
     var AppRouter = Backbone.Router.extend( {
         routes: {
             'add': 'add',
-            'view-:id': 'view',
+            'view/:id': 'view',
             'edit-:id': 'add',
             '*home': 'home'
         },
@@ -13,13 +13,16 @@ define(['jquery', 'backbone', 'models/tasker', 'views/list', 'views/form', 'view
         {
             this.tasks = new Tasker();
             this.views.listtodo = new ListView( {collection: this.tasks.get( 'tasks' )} );
-            this.views.listdone = new ListView( {collection: this.tasks.get( 'done' ), el: document.getElementById( 'tasklist-done' )} );
+            this.views.listdone = new ListView( {collection: this.tasks.get( 'done' ), el: document.getElementById( 'tasklist-done' ), template: _.template( document.getElementById( 'tasktemplate-done' ).innerHTML ) } );
             this.views.task = new TaskView();
             this.views.form = new FormView( {collection: this.tasks.get( 'tasks' )} );
 
             this.tasks.get( 'tasks' ).on( 'add remove change', this.goToHome, this );
 
             this.tasks.get( 'tasks' ).fetch();
+
+            this.views.listtodo.on( 'task:markAsDone', this.tasks.markAsDone, this.tasks );
+            this.views.listdone.on( 'task:reopen', this.tasks.reopenTask, this.tasks );
         },
         showOnly: function ( section )
         {

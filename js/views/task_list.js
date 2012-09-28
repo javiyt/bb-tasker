@@ -4,10 +4,16 @@ define(['jquery', 'underscore', 'backbone'], function( $, _, Backbone )
         template: _.template( document.getElementById( 'tasktemplate' ).innerHTML ),
         tagName: 'li',
         events: {
-            'click a[href^="#remove"]': 'removeModel'
+            'click a[href^="#remove"]': 'removeModel',
+            'click a[href="#done"]': 'markAsDone',
+            'click a[href="#reopen"]': 'reopenTask'
         },
-        initialize: function()
+        initialize: function( options )
         {
+            if ( options.template )
+            {
+                this.template = options.template;
+            }
             this.model.on( 'destroy remove', this.remove, this );
             this.model.on( 'change', this.render, this );
         },
@@ -27,6 +33,16 @@ define(['jquery', 'underscore', 'backbone'], function( $, _, Backbone )
             options.id = this.model.cid
             this.el.innerHTML = this.template(  options );
             return this;
+        },
+        markAsDone: function( e )
+        {
+            this.trigger( 'task:markAsDone', this.model );
+            e.preventDefault();
+        },
+        reopenTask: function( e )
+        {
+            this.trigger( 'task:reopen', this.model );
+            e.preventDefault();
         }
     });
 
