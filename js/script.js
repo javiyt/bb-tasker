@@ -1,4 +1,4 @@
-define(['jquery', 'backbone', 'models/tasker', 'views/list', 'views/form', 'views/task', 'views/form'], function( $, Backbone, Tasker, ListView, TaskView, FormView )
+define(['jquery', 'backbone', 'models/tasker', 'views/list', 'views/form', 'views/task'], function( $, Backbone, Tasker, ListView, FormView, TaskView )
 {
     var AppRouter = Backbone.Router.extend( {
         routes: {

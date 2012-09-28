@@ -4,6 +4,7 @@ requirejs.config({
         'jquery': 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min',
         'bootstrap': 'libs/bootstrap.min',
         'backbone-lib': 'libs/backbone-min',
+        //'backbone-lib': 'http://backbonejs.org/backbone',
         'backbone-debug': 'libs/backbone.debug',
         'backbone': 'libs/backbone.localStorage-min',
         'underscore': 'libs/underscore-min',
@@ -23,6 +24,12 @@ requirejs.config({
         'backbone': {
             'deps': ['underscore', 'jquery', 'backbone-lib', 'backbone-debug'],
             'exports': 'Backbone'
+        },
+        'backbone-lib': {
+            'deps': ['underscore', 'jquery']
+        },
+        'backbone-debug': {
+            'deps': ['backbone-lib']
         }
     }
 });
